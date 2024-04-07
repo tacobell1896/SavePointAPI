@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+// TODO: Use a database for production scenarios and configure the connection string in appsettings.json
 builder.Services.AddDbContext<SavePointContext>(options =>
     options.UseInMemoryDatabase("SavePointList"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
