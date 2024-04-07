@@ -103,5 +103,13 @@ namespace SavePointAPI.Controllers
         {
             return _context.SavePointNotes.Any(e => e.SavePointNoteId == id);
         }
+
+        private static SavePointNoteDTO SavePointNoteToDTO(SavePointNote savePointNote) =>
+            new SavePointNoteDTO
+            {
+                SavePointNoteId = savePointNote.SavePointNoteId,
+                Note = savePointNote.Note,
+                GameName = savePointNote.GameName
+            };
     }
 }
