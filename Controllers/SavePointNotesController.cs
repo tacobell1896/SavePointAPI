@@ -23,14 +23,17 @@ namespace SavePointAPI.Controllers
 
         // GET: api/SavePointNotes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SavePointNote>>> GetSavePointNotes()
+        public async Task<ActionResult<IEnumerable<SavePointNoteDTO>>> GetSavePointNotes()
         {
-            return await _context.SavePointNotes.ToListAsync();
+            return await 
+                _context.SavePointNotes
+                .Select(x => SavePointNoteToDTO(x))
+                .ToListAsync();
         }
 
         // GET: api/SavePointNotes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SavePointNote>> GetSavePointNote(int id)
+        public async Task<ActionResult<SavePointNoteDTO>> GetSavePointNote(int id)
         {
             var savePointNote = await _context.SavePointNotes.FindAsync(id);
 
@@ -39,35 +42,35 @@ namespace SavePointAPI.Controllers
                 return NotFound();
             }
 
-            return savePointNote;
+            return SavePointNoteToDTO(savePointNote);
         }
 
         // PUT: api/SavePointNotes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSavePointNote(int id, SavePointNote savePointNote)
+        public async Task<IActionResult> PutSavePointNote(int id, SavePointNoteDTO savePointDTO)
         {
-            if (id != savePointNote.SavePointNoteId)
+            if (id != savePointDTO.SavePointNoteId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(savePointNote).State = EntityState.Modified;
+            var savePointNote = await _context.SavePointNotes.FindAsync(id);
+            if (savePointNote == null)
+            {
+                return NotFound();
+            }
+
+            savePointNote.Note = savePointDTO.Note;
+            savePointNote.GameName = savePointDTO.GameName;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException) when (!SavePointNoteExists(id))
             {
-                if (!SavePointNoteExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
             return NoContent();
@@ -76,12 +79,19 @@ namespace SavePointAPI.Controllers
         // POST: api/SavePointNotes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<SavePointNote>> PostSavePointNote(SavePointNote savePointNote)
+        public async Task<ActionResult<SavePointNote>> PostSavePointNote(SavePointNoteDTO savePointNoteDTO)
         {
+            var savePointNote = new SavePointNote
+            {
+                Note = savePointNoteDTO.Note,
+                GameName = savePointNoteDTO.GameName
+            };
             _context.SavePointNotes.Add(savePointNote);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSavePointNote", new { id = savePointNote.SavePointNoteId }, savePointNote);
+            return CreatedAtAction(nameof(GetSavePointNote), 
+                new { id = savePointNoteDTO.SavePointNoteId }, 
+                SavePointNoteToDTO(savePointNote));
         }
 
         // DELETE: api/SavePointNotes/5
