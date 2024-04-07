@@ -9,6 +9,7 @@ using SavePointAPI.Models;
 
 namespace SavePointAPI.Controllers
 {
+    //TODO: Refactor this controller to use DTOs
     [Route("api/[controller]")]
     [ApiController]
     public class SavePointNotesController : ControllerBase
