@@ -1,19 +1,41 @@
 using Xunit;
 using SavePointAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using SavePointAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SavePointTests
 {
     public class UnitTest1
     {
         [Fact]
+        public void TestPostNote()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<SavePointContext>()
+                .UseInMemoryDatabase(databaseName: "SavePointNotes")
+                .Options;
+            var context = new SavePointContext(options);
+            var controller = new SavePointNotesController(context);
+
+            // Act
+            var result = controller.PostSavePointNote(new SavePointNoteDTO());
+
+            // Assert
+            Assert.IsType<CreatedAtActionResult>(result);
+        }
+        [Fact]
         public void TestGetNote()
         {
             // Arrange
-            var controller = new SavePointNotesController();
+            var options = new DbContextOptionsBuilder<SavePointContext>()
+                .UseInMemoryDatabase(databaseName: "SavePointNotes")
+                .Options;
+            var context = new SavePointContext(options);
+            var controller = new SavePointNotesController(context);
 
             // Act
-            var result = controller.Get();
+            var result = controller.GetSavePointNotes();
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
@@ -22,11 +44,14 @@ namespace SavePointTests
         [Fact]
         public void TestGetNoteById()
         {
-            // Arrange
-            var controller = new SavePointNotesController();
+            var options = new DbContextOptionsBuilder<SavePointContext>()
+                .UseInMemoryDatabase(databaseName: "SavePointNotes")
+                .Options;
+            var context = new SavePointContext(options);
+            var controller = new SavePointNotesController(context);
 
             // Act
-            var result = controller.Get(1);
+            var result = controller.GetSavePointNote(1);
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
@@ -36,26 +61,18 @@ namespace SavePointTests
         public void TestPutNote()
         {
             // Arrange
-            var controller = new SavePointNotesController();
+            var options = new DbContextOptionsBuilder<SavePointContext>()
+                .UseInMemoryDatabase(databaseName: "SavePointNotes")
+                .Options;
+            var context = new SavePointContext(options);
+            var controller = new SavePointNotesController(context);
 
             // Act
-            var result = controller.Put(1, new SavePointNoteDTO());
+            var result = controller.PutSavePointNote(1, new SavePointNoteDTO());
 
             // Assert
             Assert.IsType<OkResult>(result);
         }
 
-        [Fact]
-        public void TestPostNote()
-        {
-            // Arrange
-            var controller = new SavePointNotesController();
-
-            // Act
-            var result = controller.Post(new SavePointNoteDTO());
-
-            // Assert
-            Assert.IsType<CreatedAtActionResult>(result);
-        }
     }
 }

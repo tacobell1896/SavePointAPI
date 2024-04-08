@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SavePointAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e2ed78b7e667a795f1ceaf1bcd52e021a3e2d5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SavePointAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SavePointAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
