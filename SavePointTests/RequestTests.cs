@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SavePointTests
 {
-    public class UnitTest1
+    public class RequestTests
     {
         [Fact]
         public void TestPostNote()
@@ -18,8 +18,15 @@ namespace SavePointTests
             var context = new SavePointContext(options);
             var controller = new SavePointNotesController(context);
 
+            // Mocking the SavePointNoteDTO object
+            var savePointNoteDTO = new SavePointNoteDTO
+            {
+                SavePointNoteId = 1,
+                Note = "Test Note",
+                GameName = "Test Game"
+            };
             // Act
-            var result = controller.PostSavePointNote(new SavePointNoteDTO());
+            var result = controller.PostSavePointNote(savePointNoteDTO);
 
             // Assert
             Assert.IsType<CreatedAtActionResult>(result);
