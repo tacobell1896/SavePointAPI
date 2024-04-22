@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavePointAPI", "SavePointAPI.csproj", "{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavePointAPI", "src\SavePointAPI.csproj", "{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{E1A7C768-0331-42A1-B082-A373781D60B2}"
 EndProject
