@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavePointAPI", "SavePointAPI.csproj", "{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavePointAPI", "src\SavePointAPI.csproj", "{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{E1A7C768-0331-42A1-B082-A373781D60B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,18 @@ Global
 		{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DA78D6A-4E26-415D-B5EA-7831B2C16DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F300B38E-8E5B-4BB0-9475-8D5987BE975E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F300B38E-8E5B-4BB0-9475-8D5987BE975E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F300B38E-8E5B-4BB0-9475-8D5987BE975E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F300B38E-8E5B-4BB0-9475-8D5987BE975E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF09744-9807-4763-A7F9-75C501DC8AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF09744-9807-4763-A7F9-75C501DC8AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF09744-9807-4763-A7F9-75C501DC8AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF09744-9807-4763-A7F9-75C501DC8AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A7C768-0331-42A1-B082-A373781D60B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A7C768-0331-42A1-B082-A373781D60B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A7C768-0331-42A1-B082-A373781D60B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A7C768-0331-42A1-B082-A373781D60B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

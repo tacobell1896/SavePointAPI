@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tbell/Dev/SavePointAPI/SavePointAPI.csproj": {}
+    "/home/taco/Dev/SavePointAPI/SavePointAPI.csproj": {}
   },
   "projects": {
-    "/Users/tbell/Dev/SavePointAPI/SavePointAPI.csproj": {
+    "/home/taco/Dev/SavePointAPI/SavePointAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tbell/Dev/SavePointAPI/SavePointAPI.csproj",
+        "projectUniqueName": "/home/taco/Dev/SavePointAPI/SavePointAPI.csproj",
         "projectName": "SavePointAPI",
-        "projectPath": "/Users/tbell/Dev/SavePointAPI/SavePointAPI.csproj",
-        "packagesPath": "/Users/tbell/.nuget/packages/",
-        "outputPath": "/Users/tbell/Dev/SavePointAPI/obj/",
+        "projectPath": "/home/taco/Dev/SavePointAPI/SavePointAPI.csproj",
+        "packagesPath": "/home/taco/.nuget/packages/",
+        "outputPath": "/home/taco/Dev/SavePointAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tbell/.nuget/NuGet/NuGet.Config"
+          "/home/taco/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,9 +62,17 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Xunit": {
+              "target": "Package",
+              "version": "[2.7.0, )"
             }
           },
           "imports": [
@@ -87,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
