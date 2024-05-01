@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("SavePoint");
-// TODO: Use a database for production scenarios and configure the connection string in appsettings.json
 builder.Services.AddDbContext<SavePointContext>(options =>
     options.UseNpgsql(connectionString));
 
@@ -31,6 +30,10 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine(ex.Message);
     }
 }
+
+// for allowing a client to access the API
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

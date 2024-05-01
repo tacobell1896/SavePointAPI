@@ -6,3 +6,16 @@
 **/*.user
 **/*.vscode
 **/*.vs
+Migrations/
+
+test/bin/Debug/net8.0/
+
+test/obj/Debug/net8.0/
+
+test/obj/
+
+src/obj/
+
+obj/
+
+src/bin/Debug/net8.0/
