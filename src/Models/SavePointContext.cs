@@ -10,5 +10,6 @@ namespace SavePointAPI.Models
         }
 
         public DbSet<SavePointNote> SavePointNotes { get; set; }
+        public DbSet<SavePointGame> SavePointGames { get; set; }
     }
 }

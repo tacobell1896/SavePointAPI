@@ -61,7 +61,8 @@ namespace SavePointAPI.Controllers
             }
 
             savePointNote.Note = savePointDTO.Note;
-            savePointNote.GameName = savePointDTO.GameName;
+            savePointNote.NoteDate = savePointDTO.NoteDate;
+            savePointNote.SavePointGameId = savePointDTO.SavePointGameId;
 
             try
             {
@@ -83,7 +84,8 @@ namespace SavePointAPI.Controllers
             var savePointNote = new SavePointNote
             {
                 Note = savePointNoteDTO.Note,
-                GameName = savePointNoteDTO.GameName
+                NoteDate = savePointNoteDTO.NoteDate,
+                SavePointGameId = savePointNoteDTO.SavePointGameId
             };
             _context.SavePointNotes.Add(savePointNote);
             await _context.SaveChangesAsync();
@@ -119,7 +121,7 @@ namespace SavePointAPI.Controllers
             {
                 SavePointNoteId = savePointNote.SavePointNoteId,
                 Note = savePointNote.Note,
-                GameName = savePointNote.GameName
+                SavePointGameId = savePointNote.SavePointGameId
             };
     }
 }
