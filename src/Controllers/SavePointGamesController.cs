@@ -44,14 +44,14 @@ namespace SavePointAPI.Controllers
         // PUT: api/SavePointGames/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSavePointGame(int id, SavePointGame savePointGame)
+        public async Task<IActionResult> PutSavePointGame(int id, SavePointGameDTO savePointGameDTO)
         {
-            if (id != savePointGame.SavePointGameId)
+            if (id != savePointGameDTO.SavePointGameId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(savePointGame).State = EntityState.Modified;
+            _context.Entry(savePointGameDTO).State = EntityState.Modified;
 
             try
             {
@@ -75,12 +75,22 @@ namespace SavePointAPI.Controllers
         // POST: api/SavePointGames
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<SavePointGame>> PostSavePointGame(SavePointGame savePointGame)
+        public async Task<ActionResult<SavePointGame>> PostSavePointGame(SavePointGameDTO savePointGame)
         {
-            _context.SavePointGames.Add(savePointGame);
+            var Game = new SavePointGame
+            {
+                GameName = savePointGame.GameName,
+                GameConsole = savePointGame.GameConsole,
+                GameGenre = savePointGame.GameGenre,
+                GameDeveloper = savePointGame.GameDeveloper,
+                GamePublisher = savePointGame.GamePublisher,
+                GameReleaseDate = savePointGame.GameReleaseDate,
+                GameDescription = savePointGame.GameDescription,
+            };
+            _context.SavePointGames.Add(Game);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSavePointGame", new { id = savePointGame.SavePointGameId }, savePointGame);
+            return CreatedAtAction(nameof(PostSavePointGame), new { id = savePointGame.SavePointGameId }, savePointGame);
         }
 
         // DELETE: api/SavePointGames/5

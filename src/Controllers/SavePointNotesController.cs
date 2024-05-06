@@ -47,9 +47,9 @@ namespace SavePointAPI.Controllers
         // PUT: api/SavePointNotes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSavePointNote(int id, SavePointNoteDTO savePointDTO)
+        public async Task<IActionResult> PutSavePointNote(int id, SavePointNoteDTO savePointNoteDTO)
         {
-            if (id != savePointDTO.SavePointNoteId)
+            if (id != savePointNoteDTO.SavePointNoteId)
             {
                 return BadRequest();
             }
@@ -60,9 +60,9 @@ namespace SavePointAPI.Controllers
                 return NotFound();
             }
 
-            savePointNote.Note = savePointDTO.Note;
-            savePointNote.NoteDate = savePointDTO.NoteDate;
-            savePointNote.SavePointGameId = savePointDTO.SavePointGameId;
+            savePointNote.Note = savePointNoteDTO.Note;
+            savePointNote.NoteDate = savePointNoteDTO.NoteDate;
+            savePointNote.SavePointGame = savePointNoteDTO.SavePointGame;
 
             try
             {
@@ -85,7 +85,7 @@ namespace SavePointAPI.Controllers
             {
                 Note = savePointNoteDTO.Note,
                 NoteDate = savePointNoteDTO.NoteDate,
-                SavePointGameId = savePointNoteDTO.SavePointGameId
+                SavePointGame = savePointNoteDTO.SavePointGame
             };
             _context.SavePointNotes.Add(savePointNote);
             await _context.SaveChangesAsync();
@@ -121,7 +121,8 @@ namespace SavePointAPI.Controllers
             {
                 SavePointNoteId = savePointNote.SavePointNoteId,
                 Note = savePointNote.Note,
-                SavePointGameId = savePointNote.SavePointGameId
+                NoteDate = savePointNote.NoteDate,
+                SavePointGame = savePointNote.SavePointGame
             };
     }
 }
