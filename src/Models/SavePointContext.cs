@@ -11,5 +11,18 @@ namespace SavePointAPI.Models
 
         public DbSet<SavePointNote> SavePointNotes { get; set; }
         public DbSet<SavePointGame> SavePointGames { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SavePointGame>()
+                .HasMany(g => g.SavePointNotes)
+                .WithOne(n => n.SavePointGame!)
+                .HasForeignKey(n => n.SavePointGameId);
+
+            modelBuilder.Entity<SavePointNote>()
+                .HasOne(n => n.SavePointGame)
+                .WithMany(g => g.SavePointNotes!)
+                .HasForeignKey(n => n.SavePointGameId);
+        }
     }
 }

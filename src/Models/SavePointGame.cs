@@ -12,5 +12,6 @@ namespace SavePointAPI.Models
         public string? GameDescription { get; set; }
         public string? GameRating { get; set; }
         public string? GameImage { get; set; }
+        public ICollection<SavePointNote>? SavePointNotes { get; }
     }
 }

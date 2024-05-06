@@ -24,6 +24,7 @@ namespace SavePointAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SavePointGame>>> GetSavePointGames()
         {
+            // TODO: Return the list of notes associated with the game
             return await _context.SavePointGames.ToListAsync();
         }
 

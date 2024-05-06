@@ -24,6 +24,7 @@ namespace SavePointAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SavePointNoteDTO>>> GetSavePointNotes()
         {
+            // TODO: Return the Game Object with the SavePointNote
             return await 
                 _context.SavePointNotes
                 .Select(x => SavePointNoteToDTO(x))
@@ -62,7 +63,7 @@ namespace SavePointAPI.Controllers
 
             savePointNote.Note = savePointNoteDTO.Note;
             savePointNote.NoteDate = savePointNoteDTO.NoteDate;
-            savePointNote.SavePointGame = savePointNoteDTO.SavePointGame;
+            savePointNote.SavePointGameId = savePointNoteDTO.SavePointGameId;
 
             try
             {
@@ -85,7 +86,7 @@ namespace SavePointAPI.Controllers
             {
                 Note = savePointNoteDTO.Note,
                 NoteDate = savePointNoteDTO.NoteDate,
-                SavePointGame = savePointNoteDTO.SavePointGame
+                SavePointGameId = savePointNoteDTO.SavePointGameId
             };
             _context.SavePointNotes.Add(savePointNote);
             await _context.SaveChangesAsync();
@@ -122,7 +123,7 @@ namespace SavePointAPI.Controllers
                 SavePointNoteId = savePointNote.SavePointNoteId,
                 Note = savePointNote.Note,
                 NoteDate = savePointNote.NoteDate,
-                SavePointGame = savePointNote.SavePointGame
+                SavePointGameId = savePointNote.SavePointGameId
             };
     }
 }
