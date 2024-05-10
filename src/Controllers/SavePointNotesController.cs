@@ -24,6 +24,7 @@ namespace SavePointAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SavePointNoteDTO>>> GetSavePointNotes()
         {
+            // TODO: Return the Game Object with the SavePointNote
             return await 
                 _context.SavePointNotes
                 .Select(x => SavePointNoteToDTO(x))
@@ -47,9 +48,9 @@ namespace SavePointAPI.Controllers
         // PUT: api/SavePointNotes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSavePointNote(int id, SavePointNoteDTO savePointDTO)
+        public async Task<IActionResult> PutSavePointNote(int id, SavePointNoteDTO savePointNoteDTO)
         {
-            if (id != savePointDTO.SavePointNoteId)
+            if (id != savePointNoteDTO.SavePointNoteId)
             {
                 return BadRequest();
             }
@@ -60,8 +61,9 @@ namespace SavePointAPI.Controllers
                 return NotFound();
             }
 
-            savePointNote.Note = savePointDTO.Note;
-            savePointNote.GameName = savePointDTO.GameName;
+            savePointNote.Note = savePointNoteDTO.Note;
+            savePointNote.NoteDate = savePointNoteDTO.NoteDate;
+            savePointNote.SavePointGameId = savePointNoteDTO.SavePointGameId;
 
             try
             {
@@ -83,7 +85,8 @@ namespace SavePointAPI.Controllers
             var savePointNote = new SavePointNote
             {
                 Note = savePointNoteDTO.Note,
-                GameName = savePointNoteDTO.GameName
+                NoteDate = savePointNoteDTO.NoteDate,
+                SavePointGameId = savePointNoteDTO.SavePointGameId
             };
             _context.SavePointNotes.Add(savePointNote);
             await _context.SaveChangesAsync();
@@ -119,7 +122,8 @@ namespace SavePointAPI.Controllers
             {
                 SavePointNoteId = savePointNote.SavePointNoteId,
                 Note = savePointNote.Note,
-                GameName = savePointNote.GameName
+                NoteDate = savePointNote.NoteDate,
+                SavePointGameId = savePointNote.SavePointGameId
             };
     }
 }

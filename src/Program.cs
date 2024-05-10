@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-var connectionString = builder.Configuration.GetConnectionString("SavePoint");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<SavePointContext>(options =>
     options.UseNpgsql(connectionString));
 
