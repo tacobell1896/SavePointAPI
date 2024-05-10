@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SavePointAPI.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +17,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("IdentityDb"));
 
 builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.MapIdentityApi<IdentityUser>();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
