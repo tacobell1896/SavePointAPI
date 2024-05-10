@@ -22,10 +22,12 @@ namespace SavePointAPI.Controllers
 
         // GET: api/SavePointGames
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SavePointGame>>> GetSavePointGames()
+        public async Task<ActionResult<IEnumerable<SavePointGameDTO>>> GetSavePointGames()
         {
             // TODO: Return the list of notes associated with the game
-            return await _context.SavePointGames.ToListAsync();
+            var savePointGames = await _context.SavePointGames.ToListAsync();
+            var savePointGameDTOs = savePointGames.Select(SavePointGameToDTO);
+            return Ok(savePointGameDTOs);
         }
 
         // GET: api/SavePointGames/5
