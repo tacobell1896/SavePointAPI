@@ -3,6 +3,7 @@ namespace SavePointAPI.Models
     public class SavePointGame
     {
         public int SavePointGameId { get; set; }
+        public int OwnerId { get; set; }
         public string? GameName { get; set; }
         public string? GameConsole { get; set; }
         public string? GameGenre { get; set; }
