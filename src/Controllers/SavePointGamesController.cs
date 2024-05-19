@@ -54,22 +54,29 @@ namespace SavePointAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(savePointGameDTO).State = EntityState.Modified;
+            var savePointGame = await _context.SavePointGames.FindAsync(id);
+            if (savePointGame == null)
+            {
+                return NotFound();
+            }
+
+            savePointGame.GameName = savePointGameDTO.GameName;
+            savePointGame.GameConsole = savePointGameDTO.GameConsole;
+            savePointGame.GameGenre = savePointGameDTO.GameGenre;
+            savePointGame.GameDeveloper = savePointGameDTO.GameDeveloper;
+            savePointGame.GamePublisher = savePointGameDTO.GamePublisher;
+            savePointGame.GameReleaseDate = savePointGameDTO.GameReleaseDate;
+            savePointGame.GameDescription = savePointGameDTO.GameDescription;
+            savePointGame.GameRating = savePointGameDTO.GameRating;
+            savePointGame.GameImage = savePointGameDTO.GameImage;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException) when (!SavePointGameExists(id))
             {
-                if (!SavePointGameExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
             return NoContent();

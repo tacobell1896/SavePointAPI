@@ -66,39 +66,39 @@ public class RequestTests
     }
     
     // TOOD: Fix this test
-    // [Fact]
-    // public async void TestPutGame()
-    // {
-        // // Arrange
-        // var options = new DbContextOptionsBuilder<SavePointContext>()
-            // .UseInMemoryDatabase(databaseName: "SavePointGames")
-            // .Options;
-        // var context = new SavePointContext(options);
-        // var controller = new SavePointGamesController(context);
+    [Fact]
+    public async void TestPutGame()
+    {
+        // Arrange
+        var options = new DbContextOptionsBuilder<SavePointContext>()
+            .UseInMemoryDatabase(databaseName: "SavePointGames")
+            .Options;
+        var context = new SavePointContext(options);
+        var controller = new SavePointGamesController(context);
 
-        // // Mocking the SavePointGameDTO object
-        // var savePointGameDTO = new SavePointGameDTO
-        // {
-            // SavePointGameId = 1,
-            // GameName = "Test Game",
-            // GameGenre = "Test Genre",
-            // GameConsole = "Test Platform"
-        // };
-        // await controller.PostSavePointGame(savePointGameDTO);
+        // Mocking the SavePointGameDTO object
+        var savePointGameDTO = new SavePointGameDTO
+        {
+            SavePointGameId = 1,
+            GameName = "Test Game",
+            GameGenre = "Test Genre",
+            GameConsole = "Test Platform"
+        };
+        await controller.PostSavePointGame(savePointGameDTO);
 
-        // savePointGameDTO = new SavePointGameDTO
-        // {
-            // SavePointGameId = 1,
-            // GameName = "Test Game Updated",
-            // GameGenre = "Test Genre Updated",
-            // GameConsole = "Test Platform Updated"
-        // };
-        // // Act
-        // var result = await controller.PutSavePointGame(1, savePointGameDTO);
+        savePointGameDTO = new SavePointGameDTO
+        {
+            SavePointGameId = 1,
+            GameName = "Test Game Updated",
+            GameGenre = "Test Genre Updated",
+            GameConsole = "Test Platform Updated"
+        };
+        // Act
+        var result = await controller.PutSavePointGame(1, savePointGameDTO);
 
-        // // Assert
-        // Assert.IsType<NoContentResult>(result);
-    // }
+        // Assert
+        Assert.IsType<NoContentResult>(result);
+    }
 
     [Fact]
     public async void TestPostNote()
