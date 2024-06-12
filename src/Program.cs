@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SavePointAPI.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Identity;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -24,11 +25,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<SavePointContext>(options =>
     options.UseNpgsql(connectionString));
 
+
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<SavePointContext>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.MapIdentityApi<IdentityUser>();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

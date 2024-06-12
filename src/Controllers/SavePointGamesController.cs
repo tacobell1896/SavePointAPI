@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace SavePointAPI.Controllers
 
         // GET: api/SavePointGames
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<SavePointGameDTO>>> GetSavePointGames()
         {
             // TODO: Return the list of notes associated with the game
@@ -32,6 +34,7 @@ namespace SavePointAPI.Controllers
 
         // GET: api/SavePointGames/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<SavePointGameDTO>> GetSavePointGame(int id)
         {
             var savePointGame = await _context.SavePointGames.FindAsync(id);
@@ -47,6 +50,7 @@ namespace SavePointAPI.Controllers
         // PUT: api/SavePointGames/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutSavePointGame(int id, SavePointGameDTO savePointGameDTO)
         {
             if (id != savePointGameDTO.SavePointGameId)
@@ -85,6 +89,7 @@ namespace SavePointAPI.Controllers
         // POST: api/SavePointGames
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<SavePointGame>> PostSavePointGame(SavePointGameDTO savePointGame)
         {
             var Game = new SavePointGame
@@ -105,6 +110,7 @@ namespace SavePointAPI.Controllers
 
         // DELETE: api/SavePointGames/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSavePointGame(int id)
         {
             var savePointGame = await _context.SavePointGames.FindAsync(id);

@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace SavePointAPI.Models
 {
-    public class SavePointContext : DbContext
+    public class SavePointContext : IdentityDbContext<IdentityUser>
+
     {
         public SavePointContext(DbContextOptions<SavePointContext> options)
             : base(options)
@@ -14,6 +17,7 @@ namespace SavePointAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SavePointGame>()
                 .HasMany(g => g.SavePointNotes)
                 .WithOne(n => n.SavePointGame!)

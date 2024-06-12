@@ -6,7 +6,6 @@
 **/*.user
 **/*.vscode
 **/*.vs
-Migrations/
 
 test/bin/Debug/net8.0/
 
